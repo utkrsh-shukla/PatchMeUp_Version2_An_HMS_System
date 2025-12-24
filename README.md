@@ -83,6 +83,9 @@ npm run dev
 
 
 **Using Docker Redis**
+
+- Just run the docker dekstop app
+  
 ```bash
 # Start Redis with Docker
 docker run -d -p 6379:6379 redis:alpine
@@ -180,4 +183,5 @@ This system is production-ready with:
 - **Database errors**: Run `python init_db.py`
 
 ---
+
 
