@@ -79,22 +79,36 @@ npm install
 npm run dev
 ```
 
-### **3. Celery Jobs Setup**
+### **3. Celery Jobs Setup (For Background Tasks)**
 
+#### Prerequisites
+Make sure Docker Desktop is installed and running.
 
-**Using Docker Redis**
-
-- Just run the docker dekstop app
-  
+#### Step 1: Start Redis with Docker
 ```bash
-# Start Redis with Docker
 docker run -d -p 6379:6379 redis:alpine
-
-# Start Celery Worker
-cd backend
-.\start_celery.bat  # Windows
-./start_celery.sh # Linux/Mac
 ```
+
+#### Step 2: Start Celery Worker
+Open a new terminal in the `backend` directory:
+```bash
+cd backend
+
+# Windows
+celery -A celery_worker.celery_app worker --loglevel=info --pool=solo
+
+# Linux/Mac
+celery -A celery_worker.celery_app worker --loglevel=info
+```
+
+#### Step 3: Start Celery Beat (Required for scheduled jobs)
+Open another terminal in the `backend` directory:
+```bash
+cd backend
+celery -A celery_worker.celery_app beat --loglevel=info
+```
+
+> **Note:** Celery Beat is required for automatic daily reminders (8:00 AM) and monthly reports (1st of each month at 9:00 AM). Without it, scheduled jobs won't run.
 
 ## 🔑 Default Credentials
 
@@ -178,7 +192,7 @@ This system is production-ready with:
 3. Review documentation in the `extras/` folder
 
 **Common Issues**:
-- **Celery won't start**: Make sure Redis is running (`start_redis.bat`)
+- **Celery won't start**: Make sure Redis is running (`docker run -d -p 6379:6379 redis:alpine`)
 - **401 errors**: Normal behavior - tokens auto-refresh
 - **Database errors**: Run `python init_db.py`
 

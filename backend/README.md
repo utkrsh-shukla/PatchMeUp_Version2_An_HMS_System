@@ -50,6 +50,13 @@ python init_db.py
 ## Running the Application
 
 ### 1. Start Redis Server
+
+**Option A: Using Docker (Recommended)**
+```bash
+docker run -d -p 6379:6379 redis:alpine
+```
+
+**Option B: Using native Redis installation**
 ```bash
 redis-server
 ```
@@ -60,15 +67,32 @@ python run.py
 ```
 API will be available at `http://localhost:5000`
 
-### 3. Start Celery Worker (Optional)
+### 3. Start Celery Worker
+
+Open a new terminal in the `backend` directory:
+
+**Windows:**
+```bash
+celery -A celery_worker.celery_app worker --loglevel=info --pool=solo
+```
+
+**Linux/Mac:**
 ```bash
 celery -A celery_worker.celery_app worker --loglevel=info
 ```
 
-### 4. Start Celery Beat (Optional - for scheduled tasks)
+### 4. Start Celery Beat (Required for scheduled tasks)
+
+Open another terminal in the `backend` directory:
 ```bash
 celery -A celery_worker.celery_app beat --loglevel=info
 ```
+
+> **Note:** Celery Beat is required for automatic scheduled jobs:
+> - **Daily Reminders**: Runs at 8:00 AM daily
+> - **Monthly Reports**: Runs on 1st of each month at 9:00 AM
+> 
+> Without Celery Beat running, these scheduled jobs will not execute.
 
 ## API Documentation
 
