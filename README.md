@@ -1,5 +1,9 @@
 # Hospital Management System V2
 
+## S Grade (10 Grade Point) Capstone Project For Modern Application Development - 2 Course Under IIT Madras
+<img width="406" height="448" alt="image" src="https://github.com/user-attachments/assets/e549e56e-7564-42bf-bc2f-2a761271687b" />
+
+
 ## 🏥 Overview
 
 A comprehensive hospital management system built with modern web technologies, featuring role-based access control, appointment scheduling, automated job processing, and real-time notifications via Google Chat.
@@ -197,5 +201,6 @@ This system is production-ready with:
 - **Database errors**: Run `python init_db.py`
 
 ---
+
 
 
