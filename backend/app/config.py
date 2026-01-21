@@ -34,7 +34,8 @@ class Config:
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER') or 'noreply@hospital.com'
     
     # CORS Configuration
-    CORS_ORIGINS = ['http://localhost:8080', 'http://localhost:5173', 'https://patch-me-up-version2-an-hms-system.vercel.app/api']  # VueJS dev servers
+    #CORS_ORIGINS = ['http://localhost:8080', 'http://localhost:5173', 'https://patch-me-up-version2-an-hms-system.vercel.app/api']  # VueJS dev servers
+    CORS_ORIGINS = ['*']         # TESTING CONNECTIONS
 
 class DevelopmentConfig(Config):
     """Development configuration"""
