@@ -4,7 +4,7 @@ import router from '../router'
 // Create axios instance
 const apiClient = axios.create({
     
-    baseURL: 'https://patchmeup-version2-an-hms-system.onrender.com',
+    baseURL: 'https://patchmeup-version2-an-hms-system.onrender.com/api',
     headers: {
         'Content-Type': 'application/json'
     }
